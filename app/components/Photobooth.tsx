@@ -27,8 +27,11 @@ const handleCapture = (gifUrl: string, bitmap: ImageBitmap) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-black text-white p-6">
-      <h2 className="text-3xl font-bold mb-6">📸 Photobooth</h2>
-
+    <img src="/Snap&Posee.png" alt="Snap & Pose" className="w-24 h-24"/>
+      <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">Snap & Pose</h1>
+        <blockquote className="mb-4 italic text-xs text-gray-900">
+            &quot;by drawde"
+        </blockquote>
       <div className="bg-gray-800 p-6 rounded-2xl shadow-lg w-full max-w-md text-center">
         {gifs.length < 3 ? (
           <GifCapture onCapture={handleCapture} />
