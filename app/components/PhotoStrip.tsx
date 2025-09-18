@@ -4,6 +4,17 @@ import { combineIntoStrip, canvasToBlobUrl } from "../utils/canvasUtils";
 import { mergeGifsIntoStrip } from "../utils/gifMerge";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog"
 
 type Props = {
   bitmaps: ImageBitmap[];
@@ -48,9 +59,20 @@ const PhotoStrip: React.FC<Props> = ({ bitmaps, gifs, onRetry  }) => {
     }
   }, [bitmaps]);
 
+  const formatDateTime = (date: Date) => {
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  const yyyy = date.getFullYear();
+  const hh = String(date.getHours()).padStart(2, "0");
+  const min = String(date.getMinutes()).padStart(2, "0");
+  const ss = String(date.getSeconds()).padStart(2, "0");
+  return `${hh}-${min}-${ss}_${mm}-${dd}-${yyyy}`;
+};
+
+const fileName = `Photobooth_by_Drawde_${formatDateTime(new Date())}.${fileType}`;
+
   return (
     <div style={{ textAlign: "center", marginTop: "20px" }}>
-      {/* 📥 Export buttons */}
       <div className="mt-5 flex justify-center">
         <ToggleGroup
           type="single"
@@ -81,8 +103,6 @@ const PhotoStrip: React.FC<Props> = ({ bitmaps, gifs, onRetry  }) => {
           </ToggleGroupItem>
         </ToggleGroup>
       </div>
-
-      {/* ✅ Download preview */}
       {stripUrl && (
         <div className="mt-5 flex flex-col items-center gap-3">
           <img
@@ -94,18 +114,38 @@ const PhotoStrip: React.FC<Props> = ({ bitmaps, gifs, onRetry  }) => {
             variant="link"
             asChild
             className="px-6 py-2 text-sm font-medium text-white"
-          >
-            <a href={stripUrl} download={`strip.${fileType}`}>
-              Download {fileType.toUpperCase()}
+            >
+            <a href={stripUrl} download={fileName}>
+                Download {fileType.toUpperCase()}
             </a>
-          </Button>
-          <Button
-            variant="destructive"
-            onClick={onRetry}
-            className="px-6 py-2 text-sm font-medium"
-          >
-            Retry
-          </Button>
+        </Button>
+            <AlertDialog>
+            <AlertDialogTrigger asChild>
+                <Button variant="destructive">Retry</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-black text-white border border-gray-700">
+                <AlertDialogHeader>
+                <AlertDialogTitle className="text-white">
+                    Are you sure you want to retry?
+                </AlertDialogTitle>
+                <AlertDialogDescription className="text-gray-300">
+                    This action cannot be undone. This will permanently delete the
+                    current photo strip and return you to the camera.
+                </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                <AlertDialogCancel className="bg-gray-800 text-white hover:bg-gray-700">
+                    Cancel
+                </AlertDialogCancel>
+                <AlertDialogAction
+                    onClick={onRetry}
+                    className="bg-red-600 text-white hover:bg-red-700"
+                >
+                    Yes, retry
+                </AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+            </AlertDialog>
             </div>
       )}
     </div>
