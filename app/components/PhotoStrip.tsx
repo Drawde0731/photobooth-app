@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { combineIntoStrip, canvasToBlobUrl } from "../utils/canvasUtils";
 import { mergeGifsIntoStrip } from "../utils/gifMerge";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -28,17 +28,17 @@ const PhotoStrip: React.FC<Props> = ({ bitmaps, gifs, onRetry  }) => {
   const [fileType, setFileType] = useState<"png" | "gif">("png");
 
   /** ✅ Static Image Export */
-  const createStripImage = async () => {
-    setLoading(true);
-    setFileType("png");
-    try {
-      const canvas = await combineIntoStrip(bitmaps, 300, 200);
-      const url = await canvasToBlobUrl(canvas);
-      setStripUrl(url);
-    } finally {
-      setLoading(false);
-    }
-  };
+const createStripImage = useCallback(async () => {
+  setLoading(true);
+  setFileType("png");
+  try {
+    const canvas = await combineIntoStrip(bitmaps, 300, 200);
+    const url = await canvasToBlobUrl(canvas);
+    setStripUrl(url);
+  } finally {
+    setLoading(false);
+  }
+}, [bitmaps]);
 
   /** ✅ Animated GIF Export */
   const createStripGif = async () => {
@@ -57,7 +57,7 @@ const PhotoStrip: React.FC<Props> = ({ bitmaps, gifs, onRetry  }) => {
     if (bitmaps.length > 0) {
       createStripImage(); 
     }
-  }, [bitmaps]);
+  }, [bitmaps, createStripImage]);
 
   const formatDateTime = (date: Date) => {
   const mm = String(date.getMonth() + 1).padStart(2, "0");

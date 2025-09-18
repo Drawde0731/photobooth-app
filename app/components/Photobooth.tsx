@@ -30,7 +30,7 @@ const handleCapture = (gifUrl: string, bitmap: ImageBitmap) => {
     <img src="/Snap&Posee.png" alt="Snap & Pose" className="w-24 h-24"/>
       <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">Snap & Pose</h1>
         <blockquote className="mb-4 italic text-xs text-gray-900">
-            &quot;by drawde"
+            &quot;by drawde&quot;
         </blockquote>
       <div className="bg-gray-800 p-6 rounded-2xl shadow-lg w-full max-w-md text-center">
         {gifs.length < 3 ? (
