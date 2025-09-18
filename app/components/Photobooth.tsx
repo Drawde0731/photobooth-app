@@ -8,6 +8,7 @@ const Photobooth: React.FC = () => {
   const [bitmaps, setBitmaps] = useState<ImageBitmap[]>([]);
 
 const handleCapture = (gifUrl: string, bitmap: ImageBitmap) => {
+
   setGifs((prev) => {
     if (prev.length >= 3) return prev; 
     return [...prev, gifUrl];
@@ -16,8 +17,13 @@ const handleCapture = (gifUrl: string, bitmap: ImageBitmap) => {
     if (prev.length >= 3) return prev;
     return [...prev, bitmap];
   });
+  
 };
 
+  const handleRetry = () => {
+    setGifs([]);
+    setBitmaps([]);
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-black text-white p-6">
@@ -27,7 +33,7 @@ const handleCapture = (gifUrl: string, bitmap: ImageBitmap) => {
         {gifs.length < 3 ? (
           <GifCapture onCapture={handleCapture} />
         ) : (
-          <PhotoStrip bitmaps={bitmaps} gifs={gifs} />
+          <PhotoStrip bitmaps={bitmaps} gifs={gifs}  onRetry={handleRetry} />
         )}
       </div>
     </div>
