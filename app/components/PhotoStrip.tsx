@@ -69,7 +69,7 @@ const createStripImage = useCallback(async () => {
   return `${hh}-${min}-${ss}_${mm}-${dd}-${yyyy}`;
 };
 
-const fileName = `Photobooth_by_Drawde_${formatDateTime(new Date())}.${fileType}`;
+const fileName = `Snap&Pose_${formatDateTime(new Date())}.${fileType}`;
 
   return (
     <div style={{ textAlign: "center", marginTop: "20px" }}>
