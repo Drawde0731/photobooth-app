@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import GifCapture from "./GifCapture";
 import PhotoStrip from "./PhotoStrip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
-import { Info } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Photobooth: React.FC = () => {
   const [gifs, setGifs] = useState<string[]>([]);
