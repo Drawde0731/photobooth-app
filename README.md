@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+**Snap & Pose Photobooth**
 
-## Getting Started
+A simple Next.js photobooth web app built with Tailwind CSS. Capture photos and GIFs directly from your camera, preview them, and download your photo strips.
 
-First, run the development server:
+**Live Demo:** https://photobooth-1dmsx06ak-drawdes-projects-971fc98f.vercel.app
 
-```bash
+**Features**
+- Capture images and animated GIFs from your webcam
+- Automatic photo strip creation
+- Download photos and GIFs with timestamped filenames
+- Retry option to retake the photo strip
+- Mobile-friendly and responsive layout
+- Built with Next.js, Tailwind CSS, and ShadCN UI components
+
+
+**Getting Started**
+
+**Prerequisites**
+Make sure you have Node.js installed (v18+ recommended).
+
+**Installation**
+**Clone the repository:**
+
+git clone https://github.com/Drawde0731/photobooth-app.git
+cd photobooth-app
+
+
+**Install dependencies:**
+npm install
+# or
+yarn install
+# or
+pnpm install
+
+
+**Run the development server:**
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000 in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+**Built With**
+Next.js
+ – React framework
 
-To learn more about Next.js, take a look at the following resources:
+Tailwind CSS
+ – Utility-first CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ShadCN UI
+ – Components and Dialogs
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+React GIF
+ – GIF creation
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**License**
+This project is personal and open for experimentation.
